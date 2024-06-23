@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<Downloader>(x => new (builder.Configuration.GetValue<string>("BaseUrl")));
-builder.Services.AddScoped<FileManager>();
+builder.Services.AddScoped<FileManager>(x => new (builder.Configuration.GetValue<string>("DefaultFolderName")));
 
 var app = builder.Build();
 
