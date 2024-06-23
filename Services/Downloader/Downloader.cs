@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Json;
 
-namespace MusicDownloader.Services.Downloader
+namespace Services.Downloader
 {
     public class Downloader
     {

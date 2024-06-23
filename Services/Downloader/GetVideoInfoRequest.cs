@@ -1,4 +1,4 @@
-﻿namespace MusicDownloader.Services.Downloader {
+﻿namespace Services.Downloader {
     public class GetVideoInfoRequest {
         public string url {  get; set; }
         public int videoSource { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace MusicDownloader.Services.Downloader {
+namespace Services.Downloader {
     public class GetVideoInfoResponse {
         public int code {  get; set; }
         public JsonElement data { get; set; }

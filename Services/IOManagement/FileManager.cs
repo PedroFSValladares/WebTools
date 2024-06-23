@@ -1,4 +1,4 @@
-﻿namespace MusicDownloader.Services.IOManagement {
+﻿namespace Services.IOManagement {
     public class FileManager {
         private string DefaultFolderName { get; set; }
         private List<char> IllegalCharacters { get; set; }
