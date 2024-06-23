@@ -10,13 +10,20 @@
 
         public void Save(string name, (string extension, string directory) ext, byte[] data) {
             string newFileName = GetFileName(name);
-            string filePath = Path.Combine(ext.directory, DefaultFolderName);
+            string directory = Path.Combine(ext.directory, DefaultFolderName);
+            string filePath = Path.Combine(directory, $"{newFileName}{ext.extension}");
+            int counter = 0;
 
-            if (!Directory.Exists(filePath)) {
-                Directory.CreateDirectory(filePath);
+            if (!Directory.Exists(directory)) {
+                Directory.CreateDirectory(directory);
             }
 
-            var file = File.Create(Path.Combine(filePath, $"{newFileName}.{ext.extension}"));
+            while (File.Exists(filePath)) {
+                counter++;
+                filePath = filePath.Insert(filePath.LastIndexOf("."), $" ({Convert.ToString(counter)})");
+            }
+
+            var file = File.Create(Path.Combine(filePath));
             file.Write(data);
             file.Close();
             file.Dispose();
