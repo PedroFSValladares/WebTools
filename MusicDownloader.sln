@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicDownloader", "MusicDownloader\MusicDownloader.csproj", "{1A6A2505-D44A-4527-91D5-0349E0EA288D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{48B20311-78EC-46F8-8BFE-D7DFDEE73E5F}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{2EE82166-5AF0-47BC-A188-55E81C1F699B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTools", "WebTools\WebTools.csproj", "{5A25D4BF-56BF-460A-8A27-0308D82D1022}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A6A2505-D44A-4527-91D5-0349E0EA288D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A6A2505-D44A-4527-91D5-0349E0EA288D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A6A2505-D44A-4527-91D5-0349E0EA288D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A6A2505-D44A-4527-91D5-0349E0EA288D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EE82166-5AF0-47BC-A188-55E81C1F699B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EE82166-5AF0-47BC-A188-55E81C1F699B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EE82166-5AF0-47BC-A188-55E81C1F699B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EE82166-5AF0-47BC-A188-55E81C1F699B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A25D4BF-56BF-460A-8A27-0308D82D1022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A25D4BF-56BF-460A-8A27-0308D82D1022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A25D4BF-56BF-460A-8A27-0308D82D1022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A25D4BF-56BF-460A-8A27-0308D82D1022}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
