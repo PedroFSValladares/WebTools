@@ -1,0 +1,14 @@
+﻿@page
+@model WebTools.Views.Media.IndexModel
+
+<div class="container text-center w-50">
+    <form asp-action="Detail" method="get" id="formDownload">
+        <div class="mb-3">
+            <label for="videoUrl" class="form-label">URL:</label>
+            <input type="text" class="form-control" id="videoUrl" name="url" />
+        </div>
+        <div class="mb-3">
+            <input type="submit" id="downloadVideoButton" value="Search" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

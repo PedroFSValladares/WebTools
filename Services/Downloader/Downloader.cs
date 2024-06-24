@@ -20,7 +20,7 @@ namespace Services.Downloader
             var videoDownloadUrl = videoInfo.data.GetProperty("downloadUrl").ToString();
 
             var videoTitle = videoInfo.data.GetProperty("videoName").ToString();
-            var videoData = await GetVideoData(videoDownloadUrl);
+            var videoData = await DownloadData(videoDownloadUrl);
 
             videoRespose.Title = videoTitle;
             videoRespose.Data = videoData;
@@ -28,7 +28,7 @@ namespace Services.Downloader
             return videoRespose;
         }
 
-        private async Task<byte[]> GetVideoData(string url) {
+        public async Task<byte[]> DownloadData(string url) {
             _httpClient = new HttpClient {
                 BaseAddress = new Uri(url)
             };
@@ -39,7 +39,7 @@ namespace Services.Downloader
             return data;
         }
 
-        private async Task<GetVideoInfoResponse> GetVideoInfo(string videoUrl) {
+        public async Task<GetVideoInfoResponse> GetVideoInfo(string videoUrl) {
             _httpClient = new HttpClient {
                 BaseAddress = new Uri(BaseUrl)
             };
