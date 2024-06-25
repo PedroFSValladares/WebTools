@@ -6,9 +6,7 @@
         </div>
         <div class="col p-2" style="height: 185px;">
             <div style="width: 800px">
-                <h2>
-                    @Model.VideoName
-                </h2>      
+                <input type="text" name="name" value="@Model.VideoName" />
             </div>
             <div class="d-flex flex-row align-items-end justify-content-between h-100 p-2">
                 <a href="@Model.VideoDownloadUrl" target="_blank">Vídeo URL</a>
@@ -16,7 +14,6 @@
             </div>
             <div>
                 <input type="hidden" name="url" value="@Model.VideoDownloadUrl" />
-                <input type="hidden" name="name" value="@Model.VideoName" />
             </div>
         </div>
     </form>

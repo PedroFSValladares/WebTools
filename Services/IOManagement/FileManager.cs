@@ -1,4 +1,6 @@
-﻿namespace Services.IOManagement {
+﻿using FFMpegCore;
+
+namespace Services.IOManagement {
     public class FileManager {
         private string DefaultFolderName { get; set; }
         private List<char> IllegalCharacters { get; set; }
@@ -29,6 +31,10 @@
             file.Dispose();
         }
 
+        public void SaveTemporaly(){
+            throw new NotImplementedException();
+        }
+
         public FileStream GetFileStream(string path) {
             FileStream file = File.OpenRead(path);
             return file;
@@ -41,7 +47,6 @@
             });
             return newName;
         }
-
 
     }
 }
