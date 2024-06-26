@@ -31,6 +31,26 @@ namespace Services.IOManagement {
             file.Dispose();
         }
 
+        public void Save(string name, (string extension, string directory) ext, string data) {
+            string newFileName = GetFileName(name);
+            string directory = Path.Combine(ext.directory, DefaultFolderName);
+            string filePath = Path.Combine(directory, $"{newFileName}{ext.extension}");
+            int counter = 0;
+
+            if (!Directory.Exists(directory)) {
+                Directory.CreateDirectory(directory);
+            }
+
+            while (File.Exists(filePath)) {
+                counter++;
+                filePath = filePath.Insert(filePath.LastIndexOf("."), $" ({Convert.ToString(counter)})");
+            }
+
+            var file = File.CreateText(Path.Combine(filePath));
+            file.Write(data);
+            file.Close();
+            file.Dispose();
+        }
         public void SaveTemporaly(){
             throw new NotImplementedException();
         }
