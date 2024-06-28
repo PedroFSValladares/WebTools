@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.Games.Room {
-    public class RoomModel {
+namespace Models.Room
+{
+    public class RoomModel
+    {
         public string Name { get; set; }
         public string Owner { get; set; }
-        public string Player { get; set; }
+        public int MaxPlayers { get; set; }
     }
 }
