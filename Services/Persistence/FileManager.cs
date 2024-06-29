@@ -1,6 +1,6 @@
 ﻿using FFMpegCore;
 
-namespace Services.IOManagement {
+namespace Services.Persistence {
     public class FileManager {
         private string DefaultFolderName { get; set; }
         private List<char> IllegalCharacters { get; set; }
