@@ -1,5 +1,6 @@
 using Services.Downloader;
 using Services.Persistence;
+using WebTools.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<Downloader>(x => new(builder.Configuration.GetValue<string>("BaseUrl")));
 builder.Services.AddScoped<FileManager>(x => new(builder.Configuration.GetValue<string>("DefaultFolderName")));
+builder.Configuration.SetUpUserSettings();
 
 var app = builder.Build();
 
