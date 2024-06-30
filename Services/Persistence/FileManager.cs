@@ -31,22 +31,23 @@ namespace Services.Persistence {
             file.Dispose();
         }
 
-        public void Save(string name, string data) {
+        public void Save(string name, string data, bool reWrite) {
             string newFileName = GetFileName(name);
             string directory = Path.Combine(WokingDirectoy, DefaultFolderName);
             string filePath = Path.Combine(directory, $"{newFileName}");
+            StreamWriter file;
             int counter = 0;
 
             if (!Directory.Exists(directory)) {
                 Directory.CreateDirectory(directory);
             }
 
-            while (File.Exists(filePath)) {
+            while (File.Exists(filePath) && !reWrite) {
                 counter++;
                 filePath = filePath.Insert(filePath.LastIndexOf("."), $" ({Convert.ToString(counter)})");
             }
 
-            var file = File.CreateText(Path.Combine(filePath));
+            file = File.CreateText(filePath);
             file.Write(data);
             file.Close();
             file.Dispose();
