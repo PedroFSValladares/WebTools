@@ -1,0 +1,23 @@
+﻿@model WebTools.Requests.User.CreateUserRequest
+
+<div class="container d-flex p-3 w-100 h-50 justify-content-center align-items-center">
+    <form class="w-50 shadow shadow-sm p-3" asp-action="Create" method="post">
+        <div class="text-center">
+            <h3>Create Account</h3>
+        </div>
+        @if(Model != null) {
+            <div class="alert alert-danger">
+                @Model.ErrorMessage
+            </div>
+        }
+        <div class="mb-3">
+            <input class="form-control" type="text" asp-for="@Model.User.Name" value="" placeholder="username"/>
+        </div>
+        <div class="mb-3">
+            <input class="form-control" type="password" asp-for="@Model.User.Password" value="" placeholder="password" />
+        </div>
+        <div class="text-end">
+            <input class="btn btn-primary" type="submit" name="name" value="Create account" />
+        </div>
+    </form>
+</div>
