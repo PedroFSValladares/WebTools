@@ -28,7 +28,7 @@ namespace WebTools.Controllers {
                 return NoContent();
             }
 
-            fileManager.Save(videoInfo.Title, FileExtesions.mpeg4, videoInfo.Data);
+            fileManager.Save(videoInfo.Title + ".mp4", videoInfo.Data);
 
             return RedirectToAction(nameof(Index));
         }
