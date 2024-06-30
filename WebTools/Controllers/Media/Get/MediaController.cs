@@ -2,7 +2,7 @@
 using Services.Downloader;
 using Services.Persistence;
 
-namespace WebTools.Controllers.Media
+namespace WebTools.Controllers.Media.Get
 {
     public class MediaController : Controller
     {
