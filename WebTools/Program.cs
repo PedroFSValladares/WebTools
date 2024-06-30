@@ -1,14 +1,15 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Services.Downloader;
 using Services.Persistence;
 using WebTools.Extension;
+using WebTools.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<Downloader>(x => new(builder.Configuration.GetValue<string>("BaseUrl")));
-builder.Services.AddScoped<FileManager>(x => new(builder.Configuration.GetValue<string>("DefaultFolderName")));
+builder.Services.SetUpServices();
 builder.Configuration.SetUpUserSettings();
 
 var app = builder.Build();

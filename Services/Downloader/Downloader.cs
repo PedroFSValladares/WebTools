@@ -1,5 +1,4 @@
-﻿using Services.Settings;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 
 namespace Services.Downloader
 {
@@ -8,9 +7,8 @@ namespace Services.Downloader
         public string BaseUrl { get; set; }
         private HttpClient _httpClient { get; set; }
 
-        public Downloader()
-        {
-            
+        public Downloader(){
+            BaseUrl = Environment.GetEnvironmentVariable("youtubeVideoDownloadUrl");
         }
 
         public async Task<Video> GetVideo(string videoUrl)

@@ -2,8 +2,8 @@
 
 namespace Services.Persistence {
     public class FileManager {
-        public string DefaultFolderName { get; set; }
-        public string WokingDirectoy {  get; set; }
+        private string DefaultFolderName { get; set; }
+        private string WokingDirectoy {  get; set; }
         private List<char> IllegalCharacters { get; set; }
 
         public FileManager() {
@@ -73,6 +73,11 @@ namespace Services.Persistence {
                 newName = name.Replace(x.ToString(), "");
             });
             return newName;
+        }
+
+        public void Configure(string workDirectory, string defaultFolderName) {
+            DefaultFolderName = defaultFolderName;
+            WokingDirectoy = workDirectory;
         }
 
     }
