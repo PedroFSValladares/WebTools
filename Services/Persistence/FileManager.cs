@@ -2,18 +2,18 @@
 
 namespace Services.Persistence {
     public class FileManager {
-        private string DefaultFolderName { get; set; }
+        public string DefaultFolderName { get; set; }
+        public string WokingDirectoy {  get; set; }
         private List<char> IllegalCharacters { get; set; }
 
-        public FileManager(string defautlFolderName) {
-            DefaultFolderName = defautlFolderName;
+        public FileManager() {
             IllegalCharacters = new List<char> { '/', '\\' , ':', '*', '\"', '<', '>', '|'};
         }
 
-        public void Save(string name, (string extension, string directory) ext, byte[] data) {
+        public void Save(string name, byte[] data) {
             string newFileName = GetFileName(name);
-            string directory = Path.Combine(ext.directory, DefaultFolderName);
-            string filePath = Path.Combine(directory, $"{newFileName}{ext.extension}");
+            string directory = Path.Combine(WokingDirectoy, DefaultFolderName);
+            string filePath = Path.Combine(directory, $"{newFileName}");
             int counter = 0;
 
             if (!Directory.Exists(directory)) {
@@ -31,10 +31,10 @@ namespace Services.Persistence {
             file.Dispose();
         }
 
-        public void Save(string name, (string extension, string directory) ext, string data) {
+        public void Save(string name, string data) {
             string newFileName = GetFileName(name);
-            string directory = Path.Combine(ext.directory, DefaultFolderName);
-            string filePath = Path.Combine(directory, $"{newFileName}{ext.extension}");
+            string directory = Path.Combine(WokingDirectoy, DefaultFolderName);
+            string filePath = Path.Combine(directory, $"{newFileName}");
             int counter = 0;
 
             if (!Directory.Exists(directory)) {
@@ -51,8 +51,15 @@ namespace Services.Persistence {
             file.Close();
             file.Dispose();
         }
-        public void SaveTemporaly(){
-            throw new NotImplementedException();
+        
+        public string GetFileContent(string fileName) {
+            string filePath = Path.Combine(WokingDirectoy, DefaultFolderName, fileName);
+            return File.ReadAllText(filePath);
+        }
+
+        public byte[] GetFileData(string fileName) {
+            string filePath = Path.Combine(WokingDirectoy, DefaultFolderName, fileName);
+            return File.ReadAllBytes(filePath);
         }
 
         public FileStream GetFileStream(string path) {

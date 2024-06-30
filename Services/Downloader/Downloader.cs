@@ -1,15 +1,16 @@
-﻿using System.Net.Http.Json;
+﻿using Services.Settings;
+using System.Net.Http.Json;
 
 namespace Services.Downloader
 {
     public class Downloader
     {
-        private string BaseUrl { get; set; }
+        public string BaseUrl { get; set; }
         private HttpClient _httpClient { get; set; }
 
-        public Downloader(string url)
+        public Downloader()
         {
-            BaseUrl = url;
+            
         }
 
         public async Task<Video> GetVideo(string videoUrl)
