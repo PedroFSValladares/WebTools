@@ -9,11 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{2EE82166-5AF0-47BC-A188-55E81C1F699B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTools", "WebTools\WebTools.csproj", "{5A25D4BF-56BF-460A-8A27-0308D82D1022}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{0FD69AA2-DF89-4CFC-9E07-FFD1C809AC3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2EE82166-5AF0-47BC-A188-55E81C1F699B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EE82166-5AF0-47BC-A188-55E81C1F699B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EE82166-5AF0-47BC-A188-55E81C1F699B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EE82166-5AF0-47BC-A188-55E81C1F699B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A25D4BF-56BF-460A-8A27-0308D82D1022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A25D4BF-56BF-460A-8A27-0308D82D1022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A25D4BF-56BF-460A-8A27-0308D82D1022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A25D4BF-56BF-460A-8A27-0308D82D1022}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0FD69AA2-DF89-4CFC-9E07-FFD1C809AC3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FD69AA2-DF89-4CFC-9E07-FFD1C809AC3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FD69AA2-DF89-4CFC-9E07-FFD1C809AC3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FD69AA2-DF89-4CFC-9E07-FFD1C809AC3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

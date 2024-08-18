@@ -7,14 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj" />
-    <ProjectReference Include="..\Services\Services.csproj" />
+    <Compile Remove="Excepetions\NovaPasta\**" />
+    <Compile Remove="wwwroot\NovaPasta1\**" />
+    <Content Remove="Excepetions\NovaPasta\**" />
+    <Content Remove="wwwroot\NovaPasta1\**" />
+    <EmbeddedResource Remove="Excepetions\NovaPasta\**" />
+    <EmbeddedResource Remove="wwwroot\NovaPasta1\**" />
+    <None Remove="Excepetions\NovaPasta\**" />
+    <None Remove="wwwroot\NovaPasta1\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\Room\Delete\" />
     <Folder Include="Controllers\Room\Update\" />
     <Folder Include="Controllers\User\Get\" />
+    <Folder Include="Services\MediaManipulation\Interfaces\" />
   </ItemGroup>
 
 </Project>
