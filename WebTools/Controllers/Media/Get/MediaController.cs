@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services.Downloader;
-using Services.Persistence;
+using WebTools.Services.Persistence.Interfaces;
+using WebTools.Services.Web.Interfaces;
 
 namespace WebTools.Controllers.Media.Get
 {
     public class MediaController : Controller
     {
-        private readonly Downloader downloader;
+        private readonly IDownloader downloader;
         private readonly ILogger logger;
-        private readonly FileManager fileManager;
+        private readonly IFileManager fileManager;
 
-        public MediaController(ILogger<HomeController> logger, Downloader downloader, FileManager fileManager)
+        public MediaController(ILogger<HomeController> logger, IDownloader downloader, IFileManager fileManager)
         {
             this.logger = logger;
             this.downloader = downloader;

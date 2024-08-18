@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services.Downloader;
-using Services.Persistence;
+using WebTools.Models.Media;
+using WebTools.Services.Persistence.Interfaces;
+using WebTools.Services.Web.Interfaces;
 
-namespace WebTools.Controllers.Media.Detail {
+namespace WebTools.Controllers.Media.Detail
+{
     public class MediaController : Controller {
 
-        private readonly Downloader downloader;
-        private readonly FileManager fileManager;
+        private readonly IDownloader downloader;
+        private readonly IFileManager fileManager;
 
-        public MediaController(Downloader downloader, FileManager fileManager) {
+        public MediaController(IDownloader downloader, IFileManager fileManager) {
             this.downloader = downloader;
             this.fileManager = fileManager;
             this.fileManager.Configure(

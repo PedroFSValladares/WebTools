@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Services.Downloader;
-using Services.Persistence;
 using WebTools.Models;
+using WebTools.Services.Persistence;
+using WebTools.Services.Persistence.Interfaces;
+using WebTools.Services.Web;
+using WebTools.Services.Web.Interfaces;
 
 namespace WebTools.Extension
 {
@@ -18,8 +20,8 @@ namespace WebTools.Extension
 
         }
         public static void SetUpServices(this IServiceCollection services) {
-            services.AddScoped<Downloader>();
-            services.AddScoped<FileManager>();
+            services.AddScoped<IDownloader>(x => new Downloader());
+            services.AddScoped<IFileManager>(x => new FileManager());
             services.AddScoped<PasswordHasher<User>>();
         }
     }

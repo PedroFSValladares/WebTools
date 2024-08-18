@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Services.Persistence;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using WebTools.Models;
 using WebTools.Requests.User;
+using WebTools.Services.Persistence.Interfaces;
 
 namespace WebTools.Controllers.User.Create
 {
@@ -12,9 +10,9 @@ namespace WebTools.Controllers.User.Create
     {
 
         private readonly PasswordHasher<Models.User> passwordHasher;
-        private readonly FileManager fileManager;
+        private readonly IFileManager fileManager;
 
-        public UserController(PasswordHasher<Models.User> passwordHasher, FileManager fileManager) {
+        public UserController(PasswordHasher<Models.User> passwordHasher, IFileManager fileManager) {
             this.passwordHasher = passwordHasher;
             this.fileManager = fileManager;
             this.fileManager.Configure(
