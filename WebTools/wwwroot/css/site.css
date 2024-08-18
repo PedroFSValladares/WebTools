@@ -30,3 +30,23 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.card{
+    width: 12rem;
+    min-height: 230px;
+    padding-top: 1rem;
+}
+.card img {
+    width: 60%;
+}
+.card-anchor {
+    text-decoration: none;
+    color: black;
+    margin: .5rem;
+}
+.card-anchor .card-body {
+    align-items: center;
+ }
+.card-anchor:hover{
+    color: black;
+}
