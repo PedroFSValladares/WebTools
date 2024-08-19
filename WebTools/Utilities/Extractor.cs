@@ -13,7 +13,7 @@ namespace WebTools.Utilities
                 Limit = createCreditCardRequest.Limit,
                 TotalUsed = 0,
                 DueDate = createCreditCardRequest.DueDate.Day,
-                PaymentDate = createCreditCardRequest.PaymentDay.Day,
+                PaymentDay = createCreditCardRequest.PaymentDay.Day,
                 Color = createCreditCardRequest.Color
             };
         }
