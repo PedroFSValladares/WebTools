@@ -1,52 +1,46 @@
-﻿using WebTools.Services.Persistence.Interfaces;
+﻿using System.Text;
+using WebTools.Services.Persistence.Interfaces;
+using WebTools.Utilities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebTools.Services.Persistence
 {
     public class FileManager : IFileManager{
-        private string DefaultFolderName { get; set; }
-        private string WokingDirectoy {  get; set; }
-        private List<char> IllegalCharacters { get; set; }
+        private string WorkingDirectory { get; set; }
 
-        public FileManager() {
-            IllegalCharacters = new List<char> { '/', '\\' , ':', '*', '\"', '<', '>', '|'};
-        }
+        public void Save<T>(string name, T content, bool overWrite) {
+            string filePath;
+            FileStream file;
+            byte[] contentToSave;
+            FileManagementUtilities.CreateDiretoryIfNotExists(WorkingDirectory);
 
-        public void Save(string name, byte[] data) {
-            string newFileName = GetFileName(name);
-            string directory = Path.Combine(WokingDirectoy, DefaultFolderName);
-            string filePath = Path.Combine(directory, $"{newFileName}");
-            int counter = 0;
+            string fileName = FileManagementUtilities.RemoveIllegalCharacters(name);
+            filePath = overWrite ?
+                Path.Combine(WorkingDirectory, $"{fileName}") : FileManagementUtilities.GetNameForRepeteadFile(
+                    Path.Combine(WorkingDirectory, $"{fileName}"));
 
-            if (!Directory.Exists(directory)) {
-                Directory.CreateDirectory(directory);
+            if(content is string) {
+                contentToSave = Encoding.UTF8.GetBytes(content as string);
+            } else {
+                contentToSave = content as byte[];
             }
 
-            while (File.Exists(filePath)) {
-                counter++;
-                filePath = filePath.Insert(filePath.LastIndexOf("."), $" ({Convert.ToString(counter)})");
-            }
-
-            var file = File.Create(Path.Combine(filePath));
-            file.Write(data);
+            file = File.Create(filePath);
+            file.Write(contentToSave);
             file.Close();
             file.Dispose();
         }
 
-        public void Save(string name, string data, bool reWrite) {
-            string newFileName = GetFileName(name);
-            string directory = Path.Combine(WokingDirectoy, DefaultFolderName);
-            string filePath = Path.Combine(directory, $"{newFileName}");
+        public void Save(string name, string data, bool overWrite) {
             StreamWriter file;
-            int counter = 0;
+            string filePath;
 
-            if (!Directory.Exists(directory)) {
-                Directory.CreateDirectory(directory);
-            }
+            FileManagementUtilities.CreateDiretoryIfNotExists(WorkingDirectory);
 
-            while (File.Exists(filePath) && !reWrite) {
-                counter++;
-                filePath = filePath.Insert(filePath.LastIndexOf("."), $" ({Convert.ToString(counter)})");
-            }
+            string fileName = FileManagementUtilities.RemoveIllegalCharacters(name);
+            filePath = overWrite ? 
+                Path.Combine(WorkingDirectory, $"{fileName}") : FileManagementUtilities.GetNameForRepeteadFile(
+                    Path.Combine(WorkingDirectory, $"{fileName}"));
 
             file = File.CreateText(filePath);
             file.Write(data);
@@ -54,13 +48,13 @@ namespace WebTools.Services.Persistence
             file.Dispose();
         }
         
-        public string GetFileContent(string fileName) {
-            string filePath = Path.Combine(WokingDirectoy, DefaultFolderName, fileName);
+        public string GetFileText(string fileName) {
+            string filePath = Path.Combine(WorkingDirectory, fileName);
             return File.ReadAllText(filePath);
         }
 
-        public byte[] GetFileData(string fileName) {
-            string filePath = Path.Combine(WokingDirectoy, DefaultFolderName, fileName);
+        public byte[] GetFileBytes(string fileName) {
+            string filePath = Path.Combine(WorkingDirectory, fileName);
             return File.ReadAllBytes(filePath);
         }
 
@@ -69,18 +63,13 @@ namespace WebTools.Services.Persistence
             return file;
         }
 
-        private string GetFileName(string name) {
-            string newName = name;
-            IllegalCharacters.ForEach(x => {
-                newName = name.Replace(x.ToString(), "");
-            });
-            return newName;
-        }
-
         public void Configure(string workDirectory, string defaultFolderName) {
-            DefaultFolderName = defaultFolderName;
-            WokingDirectoy = workDirectory;
+            WorkingDirectory = Path.Combine(workDirectory, defaultFolderName);
         }
 
+        public void AppendToList<T>(string fileName, T item) {
+
+            throw new NotImplementedException();
+        }
     }
 }

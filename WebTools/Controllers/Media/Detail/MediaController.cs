@@ -24,13 +24,14 @@ namespace WebTools.Controllers.Media.Detail
                 VideoDownloadUrl = videoInfo.data.GetProperty("downloadUrl").ToString(),
                 VideoName = videoInfo.data.GetProperty("videoName").ToString()
             };
+
             return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Save(string url, string name) {
             var media = await downloader.DownloadData(url);
-            fileManager.Save(name + ".mp4", media);
+            fileManager.Save(name + ".mp4", media, false);
             return RedirectToAction("Index");
         }
     }

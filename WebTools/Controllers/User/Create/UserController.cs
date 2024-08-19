@@ -26,7 +26,7 @@ namespace WebTools.Controllers.User.Create
 
         [HttpPost]
         public IActionResult Create(CreateUserRequest createUserRequest) {
-            var usersListJson = fileManager.GetFileContent("users.json");
+            var usersListJson = fileManager.GetFileText("users.json");
             var userList = JsonSerializer.Deserialize<Dictionary<string, Models.User>>(usersListJson);
             var user = createUserRequest.User;
             
