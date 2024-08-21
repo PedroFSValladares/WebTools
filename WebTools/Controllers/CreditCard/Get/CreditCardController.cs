@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using WebTools.Requests.CreditCard;
-using WebTools.Services.Persistence.Interfaces;
+using WebTools.Services.Interfaces;
 
-namespace WebTools.Controllers.CreditCard.Get {
+namespace WebTools.Controllers.CreditCard.Get
+{
     public class CreditCardController : Controller{
 
         private readonly IFileManager fileManager;

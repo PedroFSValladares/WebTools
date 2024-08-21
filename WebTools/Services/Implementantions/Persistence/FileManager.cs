@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using WebTools.Services.Persistence.Interfaces;
+using WebTools.Services.Interfaces;
 using WebTools.Utilities;
 
 
-namespace WebTools.Services.Persistence
+namespace WebTools.Services.Implementantions.Persistence
 {
-    public class FileManager : IFileManager{
+    public class FileManager : IFileManager
+    {
         private string WorkingDirectory { get; set; }
 
-        public void Save<T>(string name, T content, bool overWrite) {
+        public void Save<T>(string name, T content, bool overWrite)
+        {
             string filePath;
             FileStream file;
             byte[] contentToSave;
@@ -23,9 +25,12 @@ namespace WebTools.Services.Persistence
                 Path.Combine(WorkingDirectory, $"{fileName}") : FileManagementUtilities.GetNameForRepeteadFile(
                     Path.Combine(WorkingDirectory, $"{fileName}"));
 
-            if(content is string) {
+            if (content is string)
+            {
                 contentToSave = Encoding.UTF8.GetBytes(content as string);
-            } else {
+            }
+            else
+            {
                 contentToSave = content as byte[];
             }
 
@@ -35,14 +40,15 @@ namespace WebTools.Services.Persistence
             file.Dispose();
         }
 
-        public void Save(string name, string data, bool overWrite) {
+        public void Save(string name, string data, bool overWrite)
+        {
             StreamWriter file;
             string filePath;
 
             FileManagementUtilities.CreateDiretoryIfNotExists(WorkingDirectory);
 
             string fileName = FileManagementUtilities.RemoveIllegalCharacters(name);
-            filePath = overWrite ? 
+            filePath = overWrite ?
                 Path.Combine(WorkingDirectory, $"{fileName}") : FileManagementUtilities.GetNameForRepeteadFile(
                     Path.Combine(WorkingDirectory, $"{fileName}"));
 
@@ -51,43 +57,52 @@ namespace WebTools.Services.Persistence
             file.Close();
             file.Dispose();
         }
-        
-        public string GetFileText(string fileName) {
+
+        public string GetFileText(string fileName)
+        {
             string filePath = Path.Combine(WorkingDirectory, fileName);
             return File.ReadAllText(filePath);
         }
 
-        public byte[] GetFileBytes(string fileName) {
+        public byte[] GetFileBytes(string fileName)
+        {
             string filePath = Path.Combine(WorkingDirectory, fileName);
             return File.ReadAllBytes(filePath);
         }
 
-        public FileStream GetFileStream(string path) {
+        public FileStream GetFileStream(string path)
+        {
             FileStream file = File.OpenRead(path);
             return file;
         }
 
-        public void Configure(string workDirectory, string defaultFolderName) {
+        public void Configure(string workDirectory, string defaultFolderName)
+        {
             WorkingDirectory = Path.Combine(workDirectory, defaultFolderName);
         }
 
-        public void AppendToList<T>(string fileName, T item) {
+        public void AppendToList<T>(string fileName, T item)
+        {
 
             throw new NotImplementedException();
         }
 
-        public List<string> EnumerateFolderFiles(string folderName) {
+        public List<string> EnumerateFolderFiles(string folderName)
+        {
             string workingDirectoryWithFolderName = Path.Combine(WorkingDirectory, folderName);
             IEnumerable<string> files = new List<string>();
-            
-            try {
+
+            try
+            {
                 files = Directory.EnumerateFiles(workingDirectoryWithFolderName);
-            }catch(DirectoryNotFoundException e) { }
+            }
+            catch (DirectoryNotFoundException e) { }
 
             return files.Select(x => Path.GetFileName(x)).ToList();
         }
 
-        public void SaveInFolder<T>(string folderName, string fileName, T content, bool overWrite) {
+        public void SaveInFolder<T>(string folderName, string fileName, T content, bool overWrite)
+        {
             throw new NotImplementedException();
         }
     }

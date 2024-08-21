@@ -21,7 +21,7 @@
     <Folder Include="Controllers\Room\Delete\" />
     <Folder Include="Controllers\Room\Update\" />
     <Folder Include="Controllers\User\Get\" />
-    <Folder Include="Services\MediaManipulation\Interfaces\" />
+    <Folder Include="Services\Implementantions\Finances\" />
   </ItemGroup>
 
 </Project>
