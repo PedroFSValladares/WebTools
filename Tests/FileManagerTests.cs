@@ -49,11 +49,40 @@ namespace Tests {
             }
         }
 
+        [Test]
+        public void EnumerateFilesFolder() {
+            string fileTestName = "test.txt";
+            int qntdFiles = 5;
+            int counter = 0;
 
+            for (int i = 0; i < qntdFiles; i++) {
+                fileManager.Save(fileTestName, "test", false);
+            }
+
+            var serviceResult = fileManager.EnumerateFolderFiles("");
+
+            Assert.IsTrue(serviceResult.Count == qntdFiles, "O metodo retornou uma quantidade menor de aquivos do que a quantidade que foi criada");
+
+            for (int i = 0; i < qntdFiles; i++) {
+                if (i == 0) {
+                    Assert.IsTrue(serviceResult.Contains("test.txt"), "Um dos arquivos criados foi retornado com o nome incorreto");
+                }else{
+                    Assert.IsTrue(serviceResult.Contains($"test ({i}).txt"), "Um dos arquivos criados foi retornado com o nome incorreto");
+                }
+            }
+        }
+
+        [Test]
+        public void EnumerateEmptyFolder() {
+            Assert.IsTrue(fileManager.EnumerateFolderFiles("").Count == 0);
+        }
 
         [TearDown]
         public void CleanUp() {
-            Directory.Delete(TestDirectory, true);
+            var testFiles = Directory.EnumerateFiles(TestDirectory);
+            foreach (var file in testFiles) {
+                File.Delete(file);
+            }
         }
     }
 }
