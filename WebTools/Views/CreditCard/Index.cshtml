@@ -1,1 +1,16 @@
-﻿<a asp-action="Create" class="btn btn-success">Create a new Card</a>
+﻿@model WebTools.Requests.CreditCard.GetCreditCardRequest
+
+<div class="container">
+    @foreach(var creditCard in Model.creditCards) {
+        <div style="background-color: rgba(@creditCard.Color.Red, @creditCard.Color.Green, @creditCard.Color.Blue, @creditCard.Color.Alpha)">
+            <h5>@creditCard.Name</h5>
+            <div>
+                @creditCard.Limit / @creditCard.TotalUsed
+                @creditCard.DueDate
+                @creditCard.PaymentDay
+            </div>
+        </div>
+    }
+</div>
+
+<a asp-action="Create" class="btn btn-success">Create a new Card</a>

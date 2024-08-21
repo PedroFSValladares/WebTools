@@ -6,8 +6,8 @@ namespace WebTools.Requests.CreditCard
     {
         public string Name { get; set; }
         public float Limit { get; set; }
-        public DateOnly DueDate { get; set; }
-        public DateOnly PaymentDay { get; set; }
-        public Color Color {get; set;}
+        public DateOnly DueDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+        public DateOnly PaymentDay { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+        public Color Color { get; set; }
     }
 }
