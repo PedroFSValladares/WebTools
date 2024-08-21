@@ -1,9 +1,10 @@
 using Akka.Actor.Setup;
 using System.Text;
+using WebTools.Services.Interfaces;
 using WebTools.Services.Persistence;
-using WebTools.Services.Persistence.Interfaces;
 
-namespace Tests {
+namespace Tests
+{
     public class FileManagerTests {
 
         private IFileManager fileManager;

@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using WebTools.Models;
+using WebTools.Services.Interfaces;
 using WebTools.Services.Persistence;
-using WebTools.Services.Persistence.Interfaces;
 using WebTools.Services.Web;
-using WebTools.Services.Web.Interfaces;
 
 namespace WebTools.Extension
 {

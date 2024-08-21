@@ -1,7 +1,9 @@
 ﻿using WebTools.Models.Finances;
 
-namespace Services.Finances.Interfaces {
-    public interface ICreditCardService {
+namespace WebTools.Services.Interfaces
+{
+    public interface ICreditCardService
+    {
         public IEnumerable<CreditCard> GetAllCreditCards();
         public void Create(CreditCard creditCard);
         public void Update(CreditCard creditCard);

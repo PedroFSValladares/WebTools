@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebTools.Models.Media;
-using WebTools.Services.Persistence.Interfaces;
-using WebTools.Services.Web.Interfaces;
+using WebTools.Services.Interfaces;
 
 namespace WebTools.Controllers.Media.Detail
 {

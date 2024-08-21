@@ -1,7 +1,11 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using WebTools.Services.Persistence.Interfaces;
 using WebTools.Utilities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace WebTools.Services.Persistence
 {
@@ -69,6 +73,21 @@ namespace WebTools.Services.Persistence
 
         public void AppendToList<T>(string fileName, T item) {
 
+            throw new NotImplementedException();
+        }
+
+        public List<string> EnumerateFolderFiles(string folderName) {
+            string workingDirectoryWithFolderName = Path.Combine(WorkingDirectory, folderName);
+            IEnumerable<string> files = new List<string>();
+            
+            try {
+                files = Directory.EnumerateFiles(workingDirectoryWithFolderName);
+            }catch(DirectoryNotFoundException e) { }
+
+            return files.Select(x => Path.GetFileName(x)).ToList();
+        }
+
+        public void SaveInFolder<T>(string folderName, string fileName, T content, bool overWrite) {
             throw new NotImplementedException();
         }
     }

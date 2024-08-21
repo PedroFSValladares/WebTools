@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using WebTools.Requests.User;
-using WebTools.Services.Persistence.Interfaces;
+using WebTools.Services.Interfaces;
 
 namespace WebTools.Controllers.User.Create
 {

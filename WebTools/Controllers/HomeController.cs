@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebTools.Models;
-using WebTools.Services.Persistence.Interfaces;
-using WebTools.Services.Web.Interfaces;
+using WebTools.Services.Interfaces;
 
-namespace WebTools.Controllers {
+namespace WebTools.Controllers
+{
     public class HomeController : Controller {
         private readonly IDownloader downloader;
         private readonly ILogger logger;

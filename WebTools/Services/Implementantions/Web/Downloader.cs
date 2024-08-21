@@ -2,9 +2,9 @@
 using WebTools.Excepetions.Media;
 using WebTools.Models.Media;
 using WebTools.Requests.Media;
-using WebTools.Services.Web.Interfaces;
+using WebTools.Services.Interfaces;
 
-namespace WebTools.Services.Web
+namespace WebTools.Services.Implementantions.Web
 {
     public class Downloader : IDownloader
     {
