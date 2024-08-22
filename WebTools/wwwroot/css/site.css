@@ -50,3 +50,11 @@ body {
 .card-anchor:hover{
     color: black;
 }
+
+.credit-card{
+    margin: .5rem;
+    min-width: 300px;
+    min-height: 160px;
+    border-radius: .5rem;
+    padding: 1rem;
+}

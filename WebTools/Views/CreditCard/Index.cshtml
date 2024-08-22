@@ -1,13 +1,32 @@
 ﻿@model WebTools.Requests.CreditCard.GetCreditCardRequest
 
-<div class="container">
+<div class="container d-flex">
     @foreach(var creditCard in Model.creditCards) {
-        <div style="background-color: rgba(@creditCard.Color.Red, @creditCard.Color.Green, @creditCard.Color.Blue, @creditCard.Color.Alpha)">
+
+        string percentUsed = (WebTools.Utilities.Math.Normalize(creditCard.TotalUsed, 0, creditCard.Limit) * 100).ToString().Replace(',', '.');
+        float remainingLimit = @creditCard.Limit - @creditCard.TotalUsed;
+        string limitBarColorClass = Convert.ToDouble(percentUsed) < 50 ? "bg-success" : "";
+
+        @if (Convert.ToDouble(percentUsed) < 50) {
+            limitBarColorClass = "bg-success";
+        } else if (Convert.ToDouble(percentUsed) >= 50 && Convert.ToDouble(percentUsed) < 90) {
+            limitBarColorClass = "bg-warning";
+        }else {
+            limitBarColorClass = "bg-danger";
+        }
+
+        <div class="credit-card" style="background-color: rgba(@creditCard.Color.Red, @creditCard.Color.Green, @creditCard.Color.Blue, @creditCard.Color.Alpha)">
             <h5>@creditCard.Name</h5>
             <div>
-                @creditCard.Limit / @creditCard.TotalUsed
-                @creditCard.DueDate
-                @creditCard.PaymentDay
+                Limit: @creditCard.Limit <br />
+                Total used: @creditCard.TotalUsed / Remainig: @remainingLimit
+                <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="@percentUsed" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar @limitBarColorClass" style="width: @percentUsed%;"></div>
+                </div>
+            </div>
+            <div>
+                Due Date: @creditCard.DueDate/@DateTime.Now.Month <br />
+                Payment Day: @creditCard.PaymentDay/@DateTime.Now.Month
             </div>
         </div>
     }
