@@ -52,9 +52,41 @@ body {
 }
 
 .credit-card{
-    margin: .5rem;
-    min-width: 300px;
-    min-height: 160px;
+    margin: .5rem 0rem;
+    min-height: 190px;
     border-radius: .5rem;
-    padding: 1rem;
+    padding: 1rem 0;
+}
+.credit-card .card-stripe{
+    background-color: black;
+    color: ghostwhite;
+    min-height: 30px;
+    padding-left: 1rem;
+}
+.credit-card .card-data{
+    padding: 0 1rem;
+}
+.credit-card .progress {
+    height: 5px;
+}
+
+.geral-data{
+    background-color: rgb(238, 238, 238);
+}
+
+.credit-card-container:hover{
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+    .credit-card-container:hover .credit-card-options {
+        display: grid;
+        grid-template-rows: auto auto;
+        padding: .4rem 0;
+    }
+
+.credit-card-options {
+    display: none;
+}
+.credit-card-options a {
+    margin: .1rem;
 }

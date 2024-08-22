@@ -4,20 +4,20 @@ namespace WebTools.Utilities
 {
     public static class Extractor
     {
-        public static Models.Finances.CreditCard GetCreditCardFromRequest(CreateCreditCardRequest createCreditCardRequest)
+        public static Models.Finances.CreditCard GetCreditCardFromRequest(BaseCreditCardRequest creditCardRequest)
         {
             return new Models.Finances.CreditCard {
                 Id = Guid.NewGuid(),
-                Name = createCreditCardRequest.Name,
-                Limit = createCreditCardRequest.Limit,
+                Name = creditCardRequest.Name,
+                Limit = creditCardRequest.Limit,
                 TotalUsed = 0,
-                DueDate = createCreditCardRequest.DueDate.Day,
-                PaymentDay = createCreditCardRequest.PaymentDay.Day,
+                DueDate = creditCardRequest.DueDate.Day,
+                PaymentDay = creditCardRequest.PaymentDay.Day,
                 Color = new Models.Finances.CreditCardColor {
-                    Blue = createCreditCardRequest.Color.B,
-                    Red = createCreditCardRequest.Color.R,
-                    Green = createCreditCardRequest.Color.G,
-                    Alpha = Math.Normalize(createCreditCardRequest.Color.A, 0, 255),
+                    Blue = creditCardRequest.Color.B,
+                    Red = creditCardRequest.Color.R,
+                    Green = creditCardRequest.Color.G,
+                    Alpha = Math.Normalize(creditCardRequest.Color.A, 0, 255),
                 }
             };
         }

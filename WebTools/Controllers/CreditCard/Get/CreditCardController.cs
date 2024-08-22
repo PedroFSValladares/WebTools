@@ -24,7 +24,9 @@ namespace WebTools.Controllers.CreditCard.Get
                 return JsonSerializer.Deserialize<Models.Finances.CreditCard>(json);
             });
             return View(new GetCreditCardRequest {
-                creditCards = savedCreditCards.ToList()
+                creditCards = savedCreditCards.ToList(),
+                TotalLimit = savedCreditCards.Sum(x => x.Limit),
+                TotalUsed = savedCreditCards.Sum(x => x.TotalUsed)
             });
         }
     }

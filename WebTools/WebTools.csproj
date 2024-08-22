@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\CreditCard\Delete\" />
     <Folder Include="Controllers\Room\Delete\" />
     <Folder Include="Controllers\Room\Update\" />
     <Folder Include="Controllers\User\Get\" />

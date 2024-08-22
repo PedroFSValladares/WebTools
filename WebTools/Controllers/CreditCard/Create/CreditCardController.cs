@@ -32,7 +32,7 @@ namespace WebTools.Controllers.CreditCard.Create
             
             string creditCardJson = JsonSerializer.Serialize(newCreditCard);
 
-            fileManager.Save($"{newCreditCard.Id}.json", creditCardJson, true);
+            fileManager.Save($"{newCreditCard.Id}.json", creditCardJson, false);
             return RedirectToAction("Index");
         }
 
