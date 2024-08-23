@@ -19,9 +19,15 @@
         </div>
         <div class="mb-3">
             <label for="@Model.Color">Color</label>
-            <input type="color" asp-for="@Model.Color" class="form-control" />
+            <input type="color" asp-for="@Model.Color" value="" class="form-control" />
         </div>
         <input type="hidden" asp-for="@Model.id"/>
         <input type="submit" value="Save" class="btn btn-success" />
     </form>
 </div>
+<script>
+    function rgbToHexadecimal(red, green, blue) {
+        return "#" + (1 << 24 | red << 16 | green << 8 | blue).toString(16).slice(1);
+    }
+    document.querySelector("input[type=color]").value = rgbToHexadecimal(@Model.Color.R, @Model.Color.G, @Model.Color.B)
+</script>
