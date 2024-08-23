@@ -105,5 +105,9 @@ namespace WebTools.Services.Implementantions.Persistence
         {
             throw new NotImplementedException();
         }
+
+        public void Delete(string name) {
+            File.Delete(Path.Combine(WorkingDirectory, name));
+        }
     }
 }
