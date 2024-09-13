@@ -15,7 +15,7 @@ namespace WebTools.Services.Implementantions.Web
         {
             BaseUrl = Environment.GetEnvironmentVariable("youtubeVideoDownloadUrl");
         }
-
+        /*
         public async Task<Video> GetVideo(string videoUrl)
         {
             Video videoRespose = new Video();
@@ -67,6 +67,17 @@ namespace WebTools.Services.Implementantions.Web
 
             return responseBody;
         }
+        */
+        GetVideoInfoResponse IDownloader.GetVideoInfo(string videoUrl) {
+            throw new NotImplementedException();
+        }
 
+        public Task<Video> GetVideo(string videoUrl) {
+            throw new NotImplementedException();
+        }
+
+        public Task<byte[]> DownloadData(string url) {
+            throw new NotImplementedException();
+        }
     }
 }

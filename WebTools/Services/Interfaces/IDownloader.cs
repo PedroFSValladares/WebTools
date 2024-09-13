@@ -7,6 +7,6 @@ namespace WebTools.Services.Interfaces
     {
         public Task<Video> GetVideo(string videoUrl);
         public Task<byte[]> DownloadData(string url);
-        public Task<GetVideoInfoResponse> GetVideoInfo(string videoUrl);
+        public GetVideoInfoResponse GetVideoInfo(string videoUrl);
     }
 }

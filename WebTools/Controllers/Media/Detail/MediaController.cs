@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebTools.Models.Media;
+using WebTools.Requests.Media;
 using WebTools.Services.Interfaces;
 
 namespace WebTools.Controllers.Media.Detail
@@ -17,14 +18,8 @@ namespace WebTools.Controllers.Media.Detail
         }
 
         public async Task<IActionResult> Detail(string url) {
-            var videoInfo = await downloader.GetVideoInfo(url);
-            var model = new DetailViewModel {
-                ImageUrl = videoInfo.data.GetProperty("thumbnailUrl").ToString(),
-                VideoDownloadUrl = videoInfo.data.GetProperty("downloadUrl").ToString(),
-                VideoName = videoInfo.data.GetProperty("videoName").ToString()
-            };
-
-            return View(model);
+            var videoInfo = downloader.GetVideoInfo(url);
+            return View(videoInfo);
         }
 
         [HttpPost]

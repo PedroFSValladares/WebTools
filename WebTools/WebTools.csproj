@@ -24,4 +24,8 @@
     <Folder Include="Services\Implementantions\Finances\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="VideoLibrary" Version="3.2.5" />
+  </ItemGroup>
+
 </Project>

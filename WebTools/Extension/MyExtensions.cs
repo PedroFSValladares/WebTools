@@ -19,7 +19,7 @@ namespace WebTools.Extension
 
         }
         public static void SetUpServices(this IServiceCollection services) {
-            services.AddScoped<IDownloader>(x => new Downloader());
+            services.AddScoped<IDownloader>(x => new VideoDownloader());
             services.AddScoped<IFileManager>(x => new FileManager());
             services.AddScoped<PasswordHasher<User>>();
         }
