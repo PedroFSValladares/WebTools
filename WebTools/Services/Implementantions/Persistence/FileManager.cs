@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.Primitives;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using WebTools.Services.Interfaces;
 using WebTools.Utilities;
@@ -108,6 +110,46 @@ namespace WebTools.Services.Implementantions.Persistence
 
         public void Delete(string name) {
             File.Delete(Path.Combine(WorkingDirectory, name));
+        }
+
+        public void SaveFile<T>(string path, string name, T data, bool overWrite) {
+            string filePath;
+            FileStream file;
+            byte[] contentToSave;
+            FileManagementUtilities.CreateDiretoryIfNotExists(path);
+
+            string fileName = FileManagementUtilities.RemoveIllegalCharacters(name);
+            filePath = overWrite ?
+                Path.Combine(path, $"{fileName}") : FileManagementUtilities.GetNameForRepeteadFile(
+                    Path.Combine(path, $"{fileName}"));
+
+            if (data is string) {
+                contentToSave = Encoding.UTF8.GetBytes(data as string);
+            } else {
+                contentToSave = data as byte[];
+            }
+
+            file = File.Create(filePath);
+            file.Write(contentToSave);
+            file.Close();
+            file.Dispose();
+        }
+
+        public byte[] GetFileData<T>(string path, string name, out string? data) {
+            byte[] content = File.ReadAllBytes(Path.Combine(path, name));
+            if (typeof(T) == typeof(byte[])) {
+                data = null;
+                return content;
+            } else {
+                data = Encoding.UTF8.GetString(content);
+                return content;
+            }
+        }
+
+        public void DeleteFile(string path, string name) => File.Delete(Path.Combine(path, name));
+
+        public List<string> EnumerateFolderFiles(string path, string folderName) {
+            throw new NotImplementedException();
         }
     }
 }

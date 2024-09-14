@@ -5,8 +5,10 @@
            <img src="@Model.ImageUrl" alt="" class="w-100"/>
         </div>
         <div class="col p-2" style="height: 185px;">
-            <div style="width: 800px">
-                <input class="form-control" type="text" name="name" value="@Model.VideoName" />
+            <div style="width: 800px" class="input-group">
+                <input class="form-control" type="text" name="name" value="@Model.VideoName" aria-describedby="format"/>
+                <span class="input-group-text" id="format">@Model.Extension</span>
+                <input asp-for="Extension" type="hidden" value="@Model.Extension"/>
             </div>
             <div class="d-flex flex-row align-items-end justify-content-between h-100 p-2">
                 <input type="submit" class="btn btn-primary" value="Save" />

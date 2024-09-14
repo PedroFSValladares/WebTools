@@ -27,9 +27,10 @@ namespace WebTools.Services.Implementantions.Web {
         public GetVideoInfoResponse GetVideoInfo(string videoUrl) {
             var video = YouTubeClient.GetVideo(videoUrl);
             return new GetVideoInfoResponse {
-                VideoName = video.FullName,
+                VideoName = video.Title,
                 ImageUrl = "",
-                Url = videoUrl
+                Url = videoUrl,
+                Extension = video.FileExtension
             };
             throw new NotImplementedException();
         }

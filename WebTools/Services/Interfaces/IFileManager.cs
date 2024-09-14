@@ -8,13 +8,17 @@ namespace WebTools.Services.Interfaces
 {
     public interface IFileManager
     {
-        public void Save<T>(string name, T data, bool reWrite);
-        public void Delete(string name);
+        [Obsolete] public void Save<T>(string name, T data, bool reWrite);
+        [Obsolete] public void Delete(string name);
+        [Obsolete] public string GetFileText(string fileName);
+        [Obsolete] public byte[] GetFileBytes(string fileName);
+        [Obsolete] public List<string> EnumerateFolderFiles(string folderName);
+        [Obsolete] public void Configure(string workDirectory, string defaultFolderName);
+        [Obsolete] public void DeleteFile(string path, string name);
+        public byte[] GetFileData<T>(string path, string name, out string? data);
+        public void SaveFile<T>(string path, string name, T data, bool overWrite);
         public void AppendToList<T>(string fileName, T item);
-        public string GetFileText(string fileName);
-        public byte[] GetFileBytes(string fileName);
         public void SaveInFolder<T>(string folderName, string fileName, T content, bool overWrite);
-        public List<string> EnumerateFolderFiles(string folderName);
-        public void Configure(string workDirectory, string defaultFolderName);
+        public List<string> EnumerateFolderFiles(string path, string folderName);
     }
 }

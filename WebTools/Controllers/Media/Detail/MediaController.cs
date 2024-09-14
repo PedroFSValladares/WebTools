@@ -13,8 +13,6 @@ namespace WebTools.Controllers.Media.Detail
         public MediaController(IDownloader downloader, IFileManager fileManager) {
             this.downloader = downloader;
             this.fileManager = fileManager;
-            this.fileManager.Configure(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), Environment.GetEnvironmentVariable("defaultMediaDownloadFolderName"));
         }
 
         public async Task<IActionResult> Detail(string url) {
@@ -23,9 +21,9 @@ namespace WebTools.Controllers.Media.Detail
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(string url, string name) {
+        public async Task<IActionResult> Save(string url, string name, string extension) {
             var media = await downloader.DownloadData(url);
-            fileManager.Save(name + ".mp4", media, false);
+            fileManager.SaveFile(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), name + extension, media, false);
             return RedirectToAction("Index");
         }
     }
