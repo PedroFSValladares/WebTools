@@ -1,4 +1,5 @@
 using WebTools.Extension;
+using WebTools.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.SetUpServices();
 builder.Configuration.SetUpUserSettings();
+
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -26,5 +29,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapHub<DiscordManagementHub>("/discordHub");
 
 app.Run();
