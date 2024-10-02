@@ -1,0 +1,9 @@
+﻿@model WebTools.Requests.Room.CreateRoomRequest
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="@Model.Room.Name" class="form-label">Room Name:</label>
+        <input asp-for="@Model.Room.Name" type="text" class="form-control" />
+    </div>
+
+</form>
