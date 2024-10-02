@@ -1,5 +1,6 @@
 using WebTools.Extension;
 using WebTools.Hubs;
+using WebTools.Services.Implementantions.Discord;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.SetUpServices();
 builder.Configuration.SetUpUserSettings();
+Environment.SetEnvironmentVariable("BotToken", builder.Configuration["BotToken"]);
 
 builder.Services.AddSignalR();
 
