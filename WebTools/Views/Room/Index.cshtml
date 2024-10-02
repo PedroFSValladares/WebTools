@@ -1,0 +1,28 @@
+﻿@model WebTools.Requests.Room.GetRoomRequest
+<div class="container text-center">
+    <div class="header">
+        <h1>Game Rooms</h1>
+        <button class="btn btn-primary" id="btnRefreshRoom">Refresh</button>
+        <a asp-action="Create">Crete New</a>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Owner</th>
+                    <th>Player</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var room in Model.Rooms) {
+                    <tr>
+                        <td>@room.Name</td>
+                        <td>@room.Owner</td>
+                        <td>@room.MaxPlayers</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

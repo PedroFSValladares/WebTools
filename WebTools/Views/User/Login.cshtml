@@ -1,0 +1,12 @@
+﻿@model WebTools.Requests.User.LoginRequest
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <input type="text" asp-for="@Model.User.Name" value="" placeholder="username" />
+    </div>
+    <div class="mb-3">
+        <input type="password" asp-for="@Model.User.Name" value="" placeholder="password" />
+    </div>
+    <input type="submit" name="name" value="Login" />
+    <a asp-action="Create">Create new account</a>
+</form>
