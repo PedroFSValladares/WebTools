@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
-using Services.Downloader;
-using Services.Persistence;
 using System.Diagnostics;
 using WebTools.Models;
+using WebTools.Services.Interfaces;
 
-namespace WebTools.Controllers {
+namespace WebTools.Controllers
+{
     public class HomeController : Controller {
-        private readonly Downloader downloader;
+        private readonly IDownloader downloader;
         private readonly ILogger logger;
-        private readonly FileManager fileManager;
+        private readonly IFileManager fileManager;
 
-        public HomeController(ILogger<HomeController> logger, Downloader downloader, FileManager fileManager) {
+        public HomeController(ILogger<HomeController> logger, IDownloader downloader, IFileManager fileManager) {
             this.logger = logger;
             this.downloader = downloader;
             this.fileManager = fileManager;
@@ -20,20 +20,11 @@ namespace WebTools.Controllers {
             return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> DownloadVideo(string url) {
-            var videoInfo = await downloader.GetVideo(url);
-
-            if (videoInfo == null) {
-                return NoContent();
-            }
-
-            fileManager.Save(videoInfo.Title + ".mp4", videoInfo.Data);
-
-            return RedirectToAction(nameof(Index));
+        public IActionResult Privacy() {
+            return View();
         }
 
-        public IActionResult Privacy() {
+        public IActionResult About() {
             return View();
         }
 

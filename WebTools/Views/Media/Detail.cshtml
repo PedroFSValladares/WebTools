@@ -1,19 +1,18 @@
-﻿@model WebTools.Controllers.Media.Detail.DetailViewModel
+﻿@model WebTools.Requests.Media.GetVideoInfoResponse
 <div class="container videoDetailContainer p-0">
     <form action="Save" method="post" class="d-flex">
         <div class="col-4 text-center p-0">
-            <img src="@Model.ImageUrl" alt="" class="w-100"/>
+           <img src="@Model.ImageUrl" alt="" class="w-100"/>
         </div>
         <div class="col p-2" style="height: 185px;">
             <div style="width: 800px">
-                <input type="text" name="name" value="@Model.VideoName" />
+                <input class="form-control" type="text" name="name" value="@Model.VideoName" />
             </div>
             <div class="d-flex flex-row align-items-end justify-content-between h-100 p-2">
-                <a href="@Model.VideoDownloadUrl" target="_blank">Vídeo URL</a>
                 <input type="submit" class="btn btn-primary" value="Save" />
             </div>
             <div>
-                <input type="hidden" name="url" value="@Model.VideoDownloadUrl" />
+                <input asp-for="Url" type="hidden" value="@Model.Url" />
             </div>
         </div>
     </form>

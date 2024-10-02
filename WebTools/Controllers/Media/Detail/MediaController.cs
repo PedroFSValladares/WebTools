@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services.Downloader;
-using Services.Persistence;
+using WebTools.Models.Media;
+using WebTools.Requests.Media;
+using WebTools.Services.Interfaces;
 
-namespace WebTools.Controllers.Media.Detail {
+namespace WebTools.Controllers.Media.Detail
+{
     public class MediaController : Controller {
 
-        private readonly Downloader downloader;
-        private readonly FileManager fileManager;
+        private readonly IDownloader downloader;
+        private readonly IFileManager fileManager;
 
-        public MediaController(Downloader downloader, FileManager fileManager) {
+        public MediaController(IDownloader downloader, IFileManager fileManager) {
             this.downloader = downloader;
             this.fileManager = fileManager;
             this.fileManager.Configure(
@@ -16,19 +18,14 @@ namespace WebTools.Controllers.Media.Detail {
         }
 
         public async Task<IActionResult> Detail(string url) {
-            var videoInfo = await downloader.GetVideoInfo(url);
-            var model = new DetailViewModel {
-                ImageUrl = videoInfo.data.GetProperty("thumbnailUrl").ToString(),
-                VideoDownloadUrl = videoInfo.data.GetProperty("downloadUrl").ToString(),
-                VideoName = videoInfo.data.GetProperty("videoName").ToString()
-            };
-            return View(model);
+            var videoInfo = downloader.GetVideoInfo(url);
+            return View(videoInfo);
         }
 
         [HttpPost]
         public async Task<IActionResult> Save(string url, string name) {
             var media = await downloader.DownloadData(url);
-            fileManager.Save(name + ".mp4", media);
+            fileManager.Save(name + ".mp4", media, false);
             return RedirectToAction("Index");
         }
     }

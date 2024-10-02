@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Services.Downloader;
-using Services.Persistence;
 using WebTools.Models;
+using WebTools.Services.Implementantions.Persistence;
+using WebTools.Services.Implementantions.Web;
+using WebTools.Services.Interfaces;
 
 namespace WebTools.Extension
 {
     public static class MyExtensions {
         public static void SetUpUserSettings(this ConfigurationManager configurationManager) {
             var userSettingsSection = configurationManager.GetSection("userSettings").Get<UserSettings>();
-            string appPath = Environment.ProcessPath.Replace(Path.GetFileName(Environment.ProcessPath), "");
+            string appPath = Path.GetDirectoryName(Environment.ProcessPath);
 
             Environment.SetEnvironmentVariable("appPath",appPath);
             foreach (var item in userSettingsSection.ToDictionary())
@@ -18,8 +19,8 @@ namespace WebTools.Extension
 
         }
         public static void SetUpServices(this IServiceCollection services) {
-            services.AddScoped<Downloader>();
-            services.AddScoped<FileManager>();
+            services.AddScoped<IDownloader>(x => new VideoDownloader());
+            services.AddScoped<IFileManager>(x => new FileManager());
             services.AddScoped<PasswordHasher<User>>();
         }
     }

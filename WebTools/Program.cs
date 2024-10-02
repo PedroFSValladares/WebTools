@@ -1,9 +1,4 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Services.Downloader;
-using Services.Persistence;
 using WebTools.Extension;
-using WebTools.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

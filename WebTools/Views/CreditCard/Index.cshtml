@@ -1,0 +1,74 @@
+﻿@model WebTools.Requests.CreditCard.GetCreditCardRequest
+
+<div class="credit-card-screen container">
+    <div class="row">
+        <div class="col-4">
+            @foreach (var creditCard in Model.creditCards) {
+                string percentUsed = (WebTools.Utilities.Math.Normalize(creditCard.TotalUsed, 0, creditCard.Limit) * 100).ToString();
+                float remainingLimit = @creditCard.Limit - @creditCard.TotalUsed;
+                string limitBarColorClass = "bg-success";
+
+                @if (Convert.ToDouble(percentUsed) < 50) {
+                    limitBarColorClass = "bg-success";
+                } else if (Convert.ToDouble(percentUsed) >= 50 && Convert.ToDouble(percentUsed) < 90) {
+                    limitBarColorClass = "bg-warning";
+                } else {
+                    limitBarColorClass = "bg-danger";
+                }
+                <div class="credit-card-container">
+                    <div class="credit-card w-100" style="background-color: rgba(@creditCard.Color.Red, @creditCard.Color.Green, @creditCard.Color.Blue, @creditCard.Color.Alpha);">
+                        <div class="card-stripe">
+                            <h5>@creditCard.Name</h5>
+                        </div>
+                        <div class="card-data">
+                            Limit: @creditCard.Limit <br />
+                            Total used: @creditCard.TotalUsed / Remainig: @remainingLimit
+                            <div class="progress" role="progressbar" aria-label="Card Limit" aria-valuenow="@percentUsed.Replace(',', '.')" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar @limitBarColorClass" style="width: @percentUsed.Replace(',', '.')%;"></div>
+                            </div>
+                            Due Date: @creditCard.DueDate/@DateTime.Now.Month <br />
+                            Payment Day: @creditCard.PaymentDay/@DateTime.Now.Month
+                        </div>
+                    </div>
+                    <div class="credit-card-options" id="">
+                        <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@creditCard.Id">Edit</a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@creditCard.Id">Delete</a>
+                        <a class="btn btn-outline-warning" asp-controller="Expense" asp-action="Create" asp-route-id="@creditCard.Id">Add</a>
+                    </div>
+                </div>
+            }
+            <a asp-action="Create" class="btn btn-outline-success w-100">Create a new Card</a>
+        </div>
+        <div class="col-8">
+            <div class="card geral-data w-100 text-center p-3">
+
+                @{
+                    var totalPercentUsed = @WebTools.Utilities.Math.Normalize(Model.TotalUsed, 0, Model.TotalLimit) * 100;
+                    var limitTotalBarColorClass = "bg-success";
+                    if (Convert.ToDouble(totalPercentUsed) < 50) {
+                        limitTotalBarColorClass = "bg-success";
+                    } else if (Convert.ToDouble(totalPercentUsed) >= 50 && Convert.ToDouble(totalPercentUsed) < 90) {
+                        limitTotalBarColorClass = "bg-warning";
+                    } else {
+                        limitTotalBarColorClass = "bg-danger";
+                    }
+                }
+
+                <h1>
+                    All Cards Limit <br />
+                    @Model.TotalLimit / @Model.TotalUsed
+                </h1>
+                <div class="progress" role="progressbar" aria-label="" aria-valuenow="@totalPercentUsed.ToString().Replace(',', '.')" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar @limitTotalBarColorClass" style="width: @totalPercentUsed.ToString().Replace(',', '.')%;"></div>
+                </div>
+            </div>
+            <div class="card-expenses">
+                <table class="table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</div>
