@@ -1,12 +1,17 @@
+using Microsoft.EntityFrameworkCore;
 using WebTools.Extension;
 using WebTools.Hubs;
 using WebTools.Services.Implementantions.Discord;
+using WebTools.Services.Implementantions.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.SetUpServices();
+builder.Services.AddDbContext<DataBase>(x =>
+    x.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerUrl"))
+);
 builder.Configuration.SetUpUserSettings();
 Environment.SetEnvironmentVariable("BotToken", builder.Configuration["BotToken"]);
 
