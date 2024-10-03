@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebTools.Extension;
 using WebTools.Hubs;
-using WebTools.Services.Implementantions.Discord;
 using WebTools.Services.Implementantions.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
